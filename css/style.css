@@ -1,16 +1,16 @@
 html {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 *,
 *::before,
 *::after {
-    box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 a {
-    color: inherit;
-    text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
 @font-face {
@@ -34,20 +34,40 @@ a {
 }
 
 body {
-    min-width: 320px;
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
+  min-width: 320px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  width: 100%;
 }
 
 /* global */
+.main {
+  height: 100vh;
+}
+
+.app {
+  height: 100%;
+  background-image: url(/img/clearsky.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* .container {
+  padding: 0 100px;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+} */
+
 .list-reset {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .flex {
-    display: flex;
+  display: flex;
 }
 
 .btn-reset {
@@ -58,9 +78,91 @@ body {
 }
 
 .title {
-    margin: 0;
+  margin: 0;
 }
 
 .descr {
-    margin: 0;
+  margin: 0;
+}
+
+/* app*/
+.app__content {
+  width: 100%;
+  height: 100%;
+}
+
+.app__blocks {
+  display: flex;
+  height: 100%;
+}
+
+.app__block--left {
+  display: flex;
+  align-items: end;
+  padding: 0 100px 0px 100px;
+  padding-bottom: 10%;
+  width: 60%;
+  height: 100%;
+}
+
+.app__weather {
+  display: flex;
+}
+
+.app__weather--temperature {
+  font-weight: 400;
+  font-size: 143px;
+  line-height: 1;
+}
+
+.app__weather__wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.app__block--right {
+  padding-right: 100px;
+  width: 40%;
+  height: 100%;
+  background: rgba(105, 105, 105, 0.2);
+  backdrop-filter: blur(7px);
+  border-radius: 15px 0 0 15px;
+  box-shadow: 0 0 15px rgba(131, 131, 131, 0.2);
+}
+
+.app__column {
+  display: flex;
+  flex-direction: column;
+  padding: 50px 35px;
+}
+
+.app__search--wrap {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 1px solid #fff;
+}
+
+.app__search {
+  width: 90%;
+  border: none;
+  background: transparent;
+  height: 50px;
+}
+
+.app__search::placeholder {
+  padding-left: 30px;
+  font-weight: 400;
+  font-size: 26px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.app__search:focus {
+  outline: none;
+}
+
+.app__search--icon {
+  padding-right: 30px;
+  display: flex;
+  align-items: center;
 }

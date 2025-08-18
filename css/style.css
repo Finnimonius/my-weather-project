@@ -133,7 +133,8 @@ body {
 .app__column {
   display: flex;
   flex-direction: column;
-  padding: 50px 35px;
+  padding: 100px 35px;
+  gap: 100px;
 }
 
 .app__search--wrap {
@@ -165,4 +166,38 @@ body {
   padding-right: 30px;
   display: flex;
   align-items: center;
+}
+
+.app__column--precipitation {
+  padding-left: 30px;
+  font-weight: 500;
+  font-size: 18px;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.app__details {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  font-weight: 400;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.7);
+  padding-bottom: 100px;
+  border-bottom: 1px solid #fff;
+}
+
+.app__detail {
+  padding:0 30px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app__detail-wrap {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
 }

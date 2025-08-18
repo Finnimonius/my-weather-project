@@ -47,18 +47,10 @@ body {
 
 .app {
   height: 100%;
-  /* background-image: url(/img/clearsky.jpg); */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
-
-/* .container {
-  padding: 0 100px;
-  margin: 0 auto;
-  width: 100%;
-  height: 100%;
-} */
 
 .list-reset {
   margin: 0;
@@ -109,11 +101,11 @@ body {
   display: flex;
   align-items: center;
   gap: 40px;
-    text-shadow: 
-    -1px -1px 0 black,  
-     1px -1px 0 black,
-    -1px  1px 0 black,
-     1px  1px 0 black;
+  text-shadow:
+    -1px -1px 0 black,
+    1px -1px 0 black,
+    -1px 1px 0 black,
+    1px 1px 0 black;
   color: #fff;
 }
 
@@ -121,7 +113,7 @@ body {
   font-weight: 400;
   font-size: 143px;
   letter-spacing: -0.08em;
-    line-height: 1; 
+  line-height: 1;
 }
 
 .app__weather__wrap {
@@ -131,7 +123,7 @@ body {
   gap: 15px;
 }
 
-.app__weather--city{
+.app__weather--city {
   font-size: 50px;
 }
 
@@ -144,9 +136,8 @@ body {
   height: 90px;
   background-size: contain;
   background-repeat: no-repeat;
-    filter: 
-    drop-shadow(0 0 2px white)
-    drop-shadow(0 0 2px white);
+  filter:
+    drop-shadow(0 0 2px white) drop-shadow(0 0 2px white);
 }
 
 .app__block--right {
@@ -163,7 +154,7 @@ body {
   display: flex;
   flex-direction: column;
   padding: 100px 35px;
-  gap: 100px;
+  gap: 70px;
 }
 
 .app__search--wrap {
@@ -202,7 +193,7 @@ body {
 .app__column--precipitation {
   padding-left: 30px;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 20px;
   text-transform: uppercase;
   color: #fff;
 }
@@ -231,4 +222,39 @@ body {
   align-items: center;
   gap: 20px;
   text-align: center;
+}
+
+.app__hourly {
+  padding: 10px 30px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  scrollbar-width: none;
+  max-height: 450px;
+  gap: 50px;
+  width: 100%;
+}
+
+.app__hourly--elem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 400;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.app__hourly--wrap {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.app__hourly--icon {
+  width: 50px;
+  height: 50px;
+  background-size: contain;
+  background-repeat: no-repeat;
+    filter:
+    drop-shadow(0 0 2px white) drop-shadow(0 0 2px white);
 }

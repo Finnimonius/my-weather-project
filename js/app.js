@@ -8,7 +8,7 @@ const WEATHER_CODES = [
     { codes: [56, 57], description: "Моросящий дождь", imgUrl: "/img/drizzle.jpg", iconUrl: "/img/drizzleicon.ico" },
     { codes: [61, 63, 65], description: "Дождь", imgUrl: "/img/rain.jpg", iconUrl: "/img/rainicon.ico" },
     { codes: [66, 67], description: "Ледяной дождь", imgUrl: "/img/rain.jpg", iconUrl: "/img/rainicon.ico" },
-    { codes: [71, 73, 75], description: "Снегопад", imgUrl: "/img/snow.jpg", iconUrl: "/img/snowicon.ico"  },
+    { codes: [71, 73, 75], description: "Снегопад", imgUrl: "/img/snow.jpg", iconUrl: "/img/snowicon.ico" },
     { codes: [77], description: "Снежные зерна", imgUrl: "/img/snow.jpg", iconUrl: "/img/snowicon.ico" },
     { codes: [80, 81, 82], description: "Ливневые дожди", imgUrl: "/img/rain.jpg", iconUrl: "/img/rainicon.ico" },
     { codes: [85, 86], description: "Снегопад", imgUrl: "/img/snow.jpg", iconUrl: "/img/snowicon.ico" },
@@ -16,7 +16,7 @@ const WEATHER_CODES = [
     { codes: [96, 99], description: "Гроза с небольшим и сильным градом", imgUrl: "/img/storm.jpeg", iconUrl: "/img/stormicon.ico" }
 ];
 
-const app = document.getElementById("app")
+const app = document.getElementById("app");
 const temperatureSpan = document.getElementById("weather-temperature");
 const citySpan = document.getElementById("weather-city");
 const dateSpan = document.getElementById("weather-date");
@@ -28,6 +28,7 @@ const humidity = document.getElementById("humidity");
 const cloudy = document.getElementById("cloudy");
 const wind = document.getElementById("wind");
 const weatherIcon = document.getElementById("weather-icon");
+const hourlyDiv = document.getElementById("hourly");
 
 const checkWeatherCode = (code) => {
     try {
@@ -68,6 +69,8 @@ const dateFormatter = (dataDate) => {
 }
 
 const displayWeather = (weather, cityName) => {
+    hourlyDiv.innerHTML = ""
+
     const { current_weather, hourly } = weather
 
     temperatureSpan.textContent = `${current_weather.temperature}°`
@@ -84,6 +87,21 @@ const displayWeather = (weather, cityName) => {
     humidity.textContent = `${hourly.relative_humidity_2m[0]}%`;
     cloudy.textContent = `${hourly.cloudcover[0]}%`;
     wind.textContent = `${((Number(current_weather.windspeed) * 1000) / 3600).toFixed(1)} м/c`
+
+    for (let i = 0; i < hourly.temperature_2m.length; i++) {
+        const weatherInfo = checkWeatherCode(hourly.weathercode[i]);
+        hourlyDiv.innerHTML += `<div class="app__hourly--elem">
+                              <div class="app__hourly--wrap">
+                                <div class="app__hourly--icon" 
+                                     style="background-image: url('${weatherInfo[2]}')"></div>
+                                <div class="app__hourly--wrapper">
+                                    <p class="app__hourly--time descr">${hourly.time[i].split('T')[1].slice(0, 5)}</p>
+                                    <p class="app__hourly--descr descr">${weatherInfo[0]}</p>
+                                </div>
+                              </div>
+                              <div class="app__hourly--temp">${hourly.temperature_2m[i]}°</div>
+                            </div>`;
+    }
 }
 
 async function fetchUserGeo() {

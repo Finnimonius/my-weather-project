@@ -18,7 +18,8 @@ export async function getCityName(coords) {
         const response = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${coords[0]}&lon=${coords[1]}&format=json`);
         const data = await response.json();
 
-        return data.address.city
+        console.log(data)
+        return data.address.city || data.address.town || data.address.village || data.address.municipality
     } catch (error) {
         console.error(error)
     }

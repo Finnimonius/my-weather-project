@@ -47,7 +47,7 @@ body {
 
 .app {
   height: 100%;
-  background-image: url(/img/clearsky.jpg);
+  /* background-image: url(/img/clearsky.jpg); */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -99,7 +99,7 @@ body {
 .app__block--left {
   display: flex;
   align-items: end;
-  padding: 0 100px 0px 100px;
+  padding: 0 0px 0px 100px;
   padding-bottom: 10%;
   width: 60%;
   height: 100%;
@@ -107,17 +107,46 @@ body {
 
 .app__weather {
   display: flex;
+  align-items: center;
+  gap: 40px;
+    text-shadow: 
+    -1px -1px 0 black,  
+     1px -1px 0 black,
+    -1px  1px 0 black,
+     1px  1px 0 black;
+  color: #fff;
 }
 
 .app__weather--temperature {
   font-weight: 400;
   font-size: 143px;
-  line-height: 1;
+  letter-spacing: -0.08em;
+    line-height: 1; 
 }
 
 .app__weather__wrap {
   display: flex;
+  padding-top: 15px;
   flex-direction: column;
+  gap: 15px;
+}
+
+.app__weather--city{
+  font-size: 50px;
+}
+
+.app__weather--date {
+  font-size: 17px;
+}
+
+.app__weather--icon {
+  width: 90px;
+  height: 90px;
+  background-size: contain;
+  background-repeat: no-repeat;
+    filter: 
+    drop-shadow(0 0 2px white)
+    drop-shadow(0 0 2px white);
 }
 
 .app__block--right {
@@ -149,6 +178,8 @@ body {
   border: none;
   background: transparent;
   height: 50px;
+  font-size: 26px;
+  color: #fff;
 }
 
 .app__search::placeholder {
@@ -188,7 +219,7 @@ body {
 }
 
 .app__detail {
-  padding:0 30px;
+  padding: 0 30px;
   width: 100%;
   display: flex;
   justify-content: space-between;

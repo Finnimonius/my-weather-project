@@ -1,19 +1,19 @@
 import { getCoordinates, getCityName } from "./geoService.js";
 
 const WEATHER_CODES = [
-    { codes: [0], description: "Чистое небо" },
-    { codes: [1, 2, 3], description: "В основном ясно" },
-    { codes: [45, 48], description: "Туман и образование инея" },
-    { codes: [51, 53, 55], description: "Морось" },
-    { codes: [56, 57], description: "Моросящий дождь" },
-    { codes: [61, 63, 65], description: "Дождь" },
-    { codes: [66, 67], description: "Ледяной дождь" },
-    { codes: [71, 73, 75], description: "Снегопад" },
-    { codes: [77], description: "Снежные зерна" },
-    { codes: [80, 81, 82], description: "Ливневые дожди" },
-    { codes: [85, 86], description: "Снегопад" },
-    { codes: [95], description: "Гроза" },
-    { codes: [96, 99], description: "Гроза с небольшим и сильным градом" }
+    { codes: [0], description: "Чистое небо", imgUrl: "/img/clearsky.jpg", iconUrl: "/img/clearicon0.ico" },
+    { codes: [1, 2, 3], description: "В основном ясно", imgUrl: "/img/clearsky.jpg", iconUrl: "/img/clearicon.ico" },
+    { codes: [45, 48], description: "Туман и образование инея", imgUrl: "/img/fog.jpeg", iconUrl: "/img/fogicon.ico" },
+    { codes: [51, 53, 55], description: "Морось", imgUrl: "/img/drizzle.jpg", iconUrl: "/img/drizzleicon.ico" },
+    { codes: [56, 57], description: "Моросящий дождь", imgUrl: "/img/drizzle.jpg", iconUrl: "/img/drizzleicon.ico" },
+    { codes: [61, 63, 65], description: "Дождь", imgUrl: "/img/rain.jpg", iconUrl: "/img/rainicon.ico" },
+    { codes: [66, 67], description: "Ледяной дождь", imgUrl: "/img/rain.jpg", iconUrl: "/img/rainicon.ico" },
+    { codes: [71, 73, 75], description: "Снегопад", imgUrl: "/img/snow.jpg", iconUrl: "/img/snowicon.ico"  },
+    { codes: [77], description: "Снежные зерна", imgUrl: "/img/snow.jpg", iconUrl: "/img/snowicon.ico" },
+    { codes: [80, 81, 82], description: "Ливневые дожди", imgUrl: "/img/rain.jpg", iconUrl: "/img/rainicon.ico" },
+    { codes: [85, 86], description: "Снегопад", imgUrl: "/img/snow.jpg", iconUrl: "/img/snowicon.ico" },
+    { codes: [95], description: "Гроза", imgUrl: "/img/storm.jpeg", iconUrl: "/img/stormicon.ico" },
+    { codes: [96, 99], description: "Гроза с небольшим и сильным градом", imgUrl: "/img/storm.jpeg", iconUrl: "/img/stormicon.ico" }
 ];
 
 const app = document.getElementById("app")
@@ -27,16 +27,17 @@ const tempMin = document.getElementById("temp-min");
 const humidity = document.getElementById("humidity");
 const cloudy = document.getElementById("cloudy");
 const wind = document.getElementById("wind");
+const weatherIcon = document.getElementById("weather-icon");
 
 const checkWeatherCode = (code) => {
     try {
-        const weatherDescr = WEATHER_CODES.find(weatherCodeObj => {
+        const weatherObj = WEATHER_CODES.find(weatherCodeObj => {
             return code === weatherCodeObj.codes.find(item => item === code)
-        }).description
-        return weatherDescr
+        })
+
+        return [weatherObj.description, weatherObj.imgUrl, weatherObj.iconUrl]
     } catch (error) {
         console.error("Такого кода описания погоды не существует", error)
-        return " "
     }
 }
 
@@ -48,18 +49,41 @@ const getMaxMinTemp = (daylyTemp) => {
     }
 }
 
+const dateFormatter = (dataDate) => {
+    const date = new Date(dataDate);
+
+    const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: false };
+    const timePart = new Intl.DateTimeFormat('ru-RU', timeOptions).format(date);
+
+    const dateOptions = {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'short',
+        year: '2-digit'
+    };
+    const datePart = new Intl.DateTimeFormat('ru-RU', dateOptions).format(date);
+
+    const formattedDate = `${timePart} - ${datePart.charAt(0).toUpperCase() + datePart.slice(1)}`;
+    return formattedDate
+}
+
 const displayWeather = (weather, cityName) => {
     const { current_weather, hourly } = weather
+
     temperatureSpan.textContent = `${current_weather.temperature}°`
-    citySpan.textContent = cityName
-    precipitation.textContent = checkWeatherCode(current_weather.weathercode);
+    citySpan.textContent = cityName ? cityName : searchInput.value;
+    app.style.backgroundImage = `url('${checkWeatherCode(current_weather.weathercode)[1]}')`;
+    precipitation.textContent = checkWeatherCode(current_weather.weathercode)[0];
+
+    dateSpan.textContent = dateFormatter(current_weather.time);
+    weatherIcon.style.backgroundImage = `url('${checkWeatherCode(current_weather.weathercode)[2]}')`
 
     const { min, max } = getMaxMinTemp(hourly.temperature_2m);
     tempMax.textContent = `${max}°`;
     tempMin.textContent = `${min}°`;
     humidity.textContent = `${hourly.relative_humidity_2m[0]}%`;
     cloudy.textContent = `${hourly.cloudcover[0]}%`;
-    wind.textContent = `${(Number(current_weather.windspeed) * 1000) / 3600} м/c`
+    wind.textContent = `${((Number(current_weather.windspeed) * 1000) / 3600).toFixed(1)} м/c`
 }
 
 async function fetchUserGeo() {

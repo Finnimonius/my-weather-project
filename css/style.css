@@ -111,7 +111,8 @@ body {
 
 .app__weather--temperature {
   font-weight: 400;
-  font-size: 143px;
+  /* font-size: 143px; */
+  font-size: clamp(5rem, 10vw, 8.9375rem);
   letter-spacing: -0.08em;
   line-height: 1;
 }
@@ -124,16 +125,16 @@ body {
 }
 
 .app__weather--city {
-  font-size: 50px;
+  font-size: clamp(1.5rem, 4vw, 3.125rem);
 }
 
 .app__weather--date {
-  font-size: 17px;
+  font-size: clamp(0.75rem, 2vw, 1.0625rem);
 }
 
 .app__weather--icon {
-  width: 90px;
-  height: 90px;
+  width: clamp(3rem, 8vw, 5.625rem); 
+  height: clamp(3rem, 8vw, 5.625rem);
   background-size: contain;
   background-repeat: no-repeat;
   filter:
@@ -150,14 +151,20 @@ body {
   box-shadow: 0 0 15px rgba(131, 131, 131, 0.2);
 }
 
+.app__block {
+  height: 100%;
+}
+
 .app__column {
   display: flex;
+  height: 100%;
   flex-direction: column;
-  padding: 100px 35px;
-  gap: 70px;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  justify-content: space-between;
 }
 
 .app__search--wrap {
+  margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -191,6 +198,7 @@ body {
 }
 
 .app__column--precipitation {
+  margin-bottom: 10px;
   padding-left: 30px;
   font-weight: 500;
   font-size: 20px;
@@ -230,8 +238,10 @@ body {
   flex-direction: column;
   overflow-y: auto;
   scrollbar-width: none;
-  max-height: 450px;
-  gap: 50px;
+  /* max-height: 450px;
+  gap: 50px; */
+  gap: clamp(1rem, 3vh, 2rem);
+  max-height: 35vh; 
   width: 100%;
 }
 

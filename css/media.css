@@ -1,0 +1,60 @@
+@media (max-width: 1630px) {
+    .app__block--left {
+        width: 50%;
+        padding-left: 50px;
+    }
+
+    .app__block--right {
+        width: 50%;
+        padding-right: 50px;
+    }
+
+
+    .app__weather__wrap {
+        padding: 0;
+        gap: 10px;
+    }
+
+    .app__weather {
+        gap: 10px;
+    }
+}
+
+@media (max-width: 1350px) {
+    .app__blocks {
+        flex-direction: column;
+    }
+
+    .app__block--left {
+        width: 100%;
+        padding: 50px 30px;
+        height: 35%;
+    }
+
+    .app__block--right {
+        height: 65%;
+        width: 100%;
+        padding: 30px;
+    }
+
+    .app__hourly {
+        display: none;
+    }
+
+    .app__weather {
+        gap: 20px;
+    }
+
+    .app__details {
+        gap: 40px;
+    }
+
+    .app__detail {
+        padding: 0px;
+    }
+
+    .app__column--precipitation {
+        margin: 0;
+        padding: 0;
+    }
+}
